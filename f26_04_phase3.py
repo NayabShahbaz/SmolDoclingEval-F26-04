@@ -78,8 +78,7 @@ This is the core function that takes an image + a task prompt and returns SmolDo
 
 **Why `model.generate()` instead of `model()`:** SmolDocling is autoregressive — it produces output one token at a time. A single forward pass (`model(**inputs)`) only gives you logits for the input, not a generated sequence. `generate()` does the full token-by-token generation loop internally.
 
-.SmolDocling was trained on conversations formatted a specific way (with `<|im_start|>User:` etc.). The processor's `apply_chat_template` adds these special tokens automatically — you can't just feed it a raw prompt string.
-"""
+.SmolDocling was trained on conversations formatted a specific way (with `<|im_start|>User:` etc.). The processor's `apply_chat_template` adds these special tokens automatically
 
 def run_smoldocling(image, prompt_text, max_tokens=8192):
     """
