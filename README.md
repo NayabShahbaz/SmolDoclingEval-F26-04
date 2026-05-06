@@ -50,14 +50,9 @@ SmolDocling-F26-04/
 ├── README.md                          ← You are here
 │
 ├── Phase 2 — Data Preprocessing
-│   ├── f26_04.py                      Downloads Im2LaTeX from Kaggle, normalizes LaTeX,
-│   │                                  converts to DocTags CSV (238K rows)
-│   ├── PubTables-1M.ipynb             Downloads PubTables XML annotations from HuggingFace,
-│   │                                  converts to OTSL .txt files (93K tables)
-│   ├── doclaynetpp.ipynb              Streams DocLayNet v1.2 test split, converts COCO
-│   │                                  bounding boxes to DocTags JSONL + page PNGs
-│   ├── preprocess.py                  Standalone PubTables OTSL converter
-│   └── doclaynetpp.py                 Standalone DocLayNet preprocessor
+│   └── f26_04.py                      Downloads all 3 datasets, normalizes LaTeX,
+│                                      converts XML to OTSL, converts COCO boxes to
+│                                      DocTags, outputs CSV + OTSL .txt + JSONL + PNGs
 │
 ├── Phase 3 — Model Inference
 │   └── f26_04_phase3.py               Loads all 3 models, runs inference on all datasets,
@@ -155,15 +150,15 @@ The project runs in three sequential stages. Each stage produces output files co
 
 ### Stage 1: Preprocess Datasets (Phase 2)
 
-Open each preprocessing notebook in Colab and run all cells:
+Open `f26_04.py` in Colab and run all cells. This single script handles all three datasets:
 
-| Notebook | Downloads From | Produces | Approx. Time |
-|----------|---------------|----------|-------------|
-| `f26_04.py` | Kaggle (via API) | `im2latex_ready.csv` — 238K equation pairs in DocTags format | ~15 min |
-| `PubTables-1M.ipynb` | HuggingFace (wget) | `ground_truth_otsl/` — 93K OTSL structure-only .txt files | ~10 min |
-| `doclaynetpp.ipynb` | HuggingFace (streaming) | `doclaynet_ready.jsonl` + page PNGs | ~20 min |
+- Downloads **Im2LaTeX-230K** from Kaggle, normalizes LaTeX, wraps in DocTags → outputs `im2latex_ready.csv`
+- Downloads **PubTables-1M** annotations from HuggingFace, converts XML → OTSL `.txt` files
+- Streams **DocLayNet v1.2** test split from HuggingFace, converts COCO boxes → DocTags JSONL + page PNGs
 
-**Save outputs to Drive after each notebook:**
+Approximate runtime: ~30–45 minutes.
+
+**Save outputs to Drive after running:**
 ```python
 import shutil
 shutil.copytree('/content/output/', '/content/drive/MyDrive/F26-04/phase2_data/')
@@ -273,7 +268,7 @@ Open `f26_04_phase4.py` in Colab. The notebook:
 | Phase | Focus | Deliverables |
 |-------|-------|-------------|
 | Phase 1 | Literature review & paper selection | Proposal document |
-| Phase 2 | Data collection & preprocessing | 3 preprocessing notebooks, Phase 2 report |
+| Phase 2 | Data collection & preprocessing | Preprocessing script (`f26_04.py`), Phase 2 report |
 | Phase 3 | Model implementation & inference | Inference script (`f26_04_phase3.py`), Phase 3 report |
 | Phase 4 | Evaluation & error analysis | Evaluation script (`f26_04_phase4.py`), Phase 4 report |
 | Phase 5 | Consolidated analysis & insights | Phase 5 final report |
