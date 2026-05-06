@@ -271,7 +271,7 @@ Open `f26_04_phase4.py` in Colab. The notebook:
 | Phase 2 | Data collection & preprocessing | Preprocessing script (`f26_04.py`), Phase 2 report |
 | Phase 3 | Model implementation & inference | Inference script (`f26_04_phase3.py`), Phase 3 report |
 | Phase 4 | Evaluation & error analysis | Evaluation script (`f26_04_phase4.py`), Phase 4 report |
-| Phase 5 | Consolidated analysis & insights | Phase 5 final report |
+| Phase 5 | Consolidated analysis & insights | Analysis script (`f26_04_phase5.py`),Phase 5 final report |
 | Phase 6 | Final technical report & documentation | Phase 6 report, updated README |
 
 ---
