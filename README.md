@@ -50,7 +50,7 @@ SmolDocling-F26-04/
 ├── README.md                          ← You are here
 │
 ├── Phase 2 — Data Preprocessing
-│   ├── im2latex_230k.ipynb            Downloads Im2LaTeX from Kaggle, normalizes LaTeX,
+│   ├── f26_04.py                      Downloads Im2LaTeX from Kaggle, normalizes LaTeX,
 │   │                                  converts to DocTags CSV (238K rows)
 │   ├── PubTables-1M.ipynb             Downloads PubTables XML annotations from HuggingFace,
 │   │                                  converts to OTSL .txt files (93K tables)
@@ -60,19 +60,22 @@ SmolDocling-F26-04/
 │   └── doclaynetpp.py                 Standalone DocLayNet preprocessor
 │
 ├── Phase 3 — Model Inference
-│   └── F26_04.ipynb                   Loads all 3 models, runs inference on all datasets,
+│   └── f26_04_phase3.py               Loads all 3 models, runs inference on all datasets,
 │                                      saves 6 result files (3 CSVs + 3 JSONLs)
 │
 ├── Phase 4 — Evaluation & Analysis
-│   └── F26-04.ipynb                   Computes all 7 metrics, runs error analysis,
+│   └── f26_04_phase4.py               Computes all 7 metrics, runs error analysis,
 │                                      bias checks, and generates comparison tables
 │
-├── Reports
-│   ├── F26-04_Phase2.pdf
-│   ├── F26-04_Phase3.pdf
-│   ├── F26-04_Phase4.pdf
-│   ├── F26-04_Phase5.pdf
-│   └── F26-04_Phase6_Report.pdf       Final technical report
+├── Phase 5 — Consolidated Analysis
+│   └── f26_04_phase5.py               Final consolidated analysis and insights
+│
+├── reports
+│   ├── f26_04_phase2_report.pdf
+│   ├── f26_04_phase3_report.pdf
+│   ├── f26_04_phase4_report.pdf
+│   ├── f26_04_phase5_report.pdf
+│   └── f26_04_phase6_report.pdf       Final technical report
 │
 └── results/                           (Generated at runtime — not committed)
     ├── smoldocling_latex_results.csv
@@ -156,7 +159,7 @@ Open each preprocessing notebook in Colab and run all cells:
 
 | Notebook | Downloads From | Produces | Approx. Time |
 |----------|---------------|----------|-------------|
-| `im2latex_230k.ipynb` | Kaggle (via API) | `im2latex_ready.csv` — 238K equation pairs in DocTags format | ~15 min |
+| `f26_04.py` | Kaggle (via API) | `im2latex_ready.csv` — 238K equation pairs in DocTags format | ~15 min |
 | `PubTables-1M.ipynb` | HuggingFace (wget) | `ground_truth_otsl/` — 93K OTSL structure-only .txt files | ~10 min |
 | `doclaynetpp.ipynb` | HuggingFace (streaming) | `doclaynet_ready.jsonl` + page PNGs | ~20 min |
 
@@ -168,7 +171,7 @@ shutil.copytree('/content/output/', '/content/drive/MyDrive/F26-04/phase2_data/'
 
 ### Stage 2: Run Model Inference (Phase 3)
 
-Open `F26_04.ipynb` in Colab with **T4 GPU runtime** (Runtime → Change runtime type → T4 GPU). The notebook:
+Open `f26_04_phase3.py` in Colab with **T4 GPU runtime** (Runtime → Change runtime type → T4 GPU). The notebook:
 
 1. Mounts Drive and loads preprocessed data from Stage 1
 2. Downloads and loads SmolDocling-256M-preview from HuggingFace
@@ -194,7 +197,7 @@ Open `F26_04.ipynb` in Colab with **T4 GPU runtime** (Runtime → Change runtime
 
 ### Stage 3: Compute Metrics & Analysis (Phase 4)
 
-Open `F26-04.ipynb` in Colab. The notebook:
+Open `f26_04_phase4.py` in Colab. The notebook:
 
 1. Loads the 6 result files from Stage 2
 2. Strips markup from outputs:
@@ -271,8 +274,8 @@ Open `F26-04.ipynb` in Colab. The notebook:
 |-------|-------|-------------|
 | Phase 1 | Literature review & paper selection | Proposal document |
 | Phase 2 | Data collection & preprocessing | 3 preprocessing notebooks, Phase 2 report |
-| Phase 3 | Model implementation & inference | Inference notebook (`F26_04.ipynb`), Phase 3 report |
-| Phase 4 | Evaluation & error analysis | Evaluation notebook (`F26-04.ipynb`), Phase 4 report |
+| Phase 3 | Model implementation & inference | Inference script (`f26_04_phase3.py`), Phase 3 report |
+| Phase 4 | Evaluation & error analysis | Evaluation script (`f26_04_phase4.py`), Phase 4 report |
 | Phase 5 | Consolidated analysis & insights | Phase 5 final report |
 | Phase 6 | Final technical report & documentation | Phase 6 report, updated README |
 
