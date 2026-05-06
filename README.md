@@ -66,11 +66,11 @@ SmolDocling-F26-04/
 │   └── f26_04_phase5.py               Final consolidated analysis and insights
 │
 ├── reports
-│   ├── f26_04_phase2_report.pdf
-│   ├── f26_04_phase3_report.pdf
+│   ├── F26_04_phase2_report.pdf
+│   ├── F26_04_phase3_report.pdf
 │   ├── f26_04_phase4_report.pdf
-│   ├── f26_04_phase5_report.pdf
-│   └── f26_04_phase6_report.pdf       Final technical report
+│   ├── F26_04_phase5_report.pdf
+│   └── F26_04_phase6_report.pdf       Final technical report
 │
 └── results/                           (Generated at runtime — not committed)
     ├── smoldocling_latex_results.csv
